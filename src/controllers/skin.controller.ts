@@ -1,20 +1,21 @@
 import { Request, Response } from 'express';
-import { Rarity } from '@prisma/client';
 import prisma from '../lib/prisma';
+
+const VALID_RARITIES = ['COMMON', 'EXCEPTIONAL', 'DELUXE', 'EXQUISITE', 'GRAND', 'SUPREME'];
 
 export const getAllSkins = async (req: Request, res: Response): Promise<void> => {
   try {
     const page = Math.max(1, parseInt(req.query.page as string) || 1);
     const limit = Math.max(1, parseInt(req.query.limit as string) || 10);
     const heroId = req.query.heroId ? parseInt(req.query.heroId as string) : undefined;
-    const rarity = req.query.rarity as Rarity | undefined;
+    const rarity = req.query.rarity as string | undefined;
 
     const where: any = {};
     if (heroId && !isNaN(heroId)) {
       where.heroId = heroId;
     }
-    if (rarity && Object.values(Rarity).includes(rarity)) {
-      where.rarity = rarity;
+    if (rarity && VALID_RARITIES.includes(rarity.toUpperCase())) {
+      where.rarity = rarity.toUpperCase();
     }
 
     const skip = (page - 1) * limit;
