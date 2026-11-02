@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import prisma from '../lib/prisma';
-
+import { prisma } from '../lib/prisma';
 export const createPlayer = async (req: Request, res: Response): Promise<void> => {
   try {
     const { nickname } = req.body;
