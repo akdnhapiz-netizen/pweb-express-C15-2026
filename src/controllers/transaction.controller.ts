@@ -3,8 +3,8 @@ import { prisma } from "../lib/prisma";
 import { HttpError } from "../utils/HttpError";
 
 // hadiah BP setelah match
-const BP_WIN = 200;
-const BP_LOSE = 50;
+const BP_WIN = 300;
+const BP_LOSE = 100;
 
 const toId = (value: unknown) => {
   const id = Number(value);

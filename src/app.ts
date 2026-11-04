@@ -22,8 +22,7 @@ app.use("/api/heroes", heroRoutes);
 app.use('/api/skins', skinRoutes);
 app.use('/api/players', playerRoutes);
 app.use("/api/players", transactionRoutes);
-app.use("/api/stats", statsRoutes);
-
+app.use("/api/statistics", statsRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
